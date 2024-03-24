@@ -19,17 +19,14 @@ fn main() {
 
     let s = "wbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbw".chars().collect_vec();
     let n = w + b;
-    let l = s.len();
-
-    for i in 0..(l-n) {
+    for i in 0..(s.len()-n) {
         let mut w0 = 0;
         let mut b0 = 0;
         for j in 0..n {
-            let j = i + j;
-            if s[j] == 'w' {
-                w0 += 1;
-            } else {
-                b0 += 1;
+            match s[i+j] {
+                'w' => w0 += 1,
+                'b' => b0 += 1,
+                _ => unreachable!(),
             }
         }
         if w == w0 && b == b0 {
@@ -37,6 +34,5 @@ fn main() {
             return;
         }
     }
-
     println!("No");
 }
